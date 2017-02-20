@@ -11,6 +11,14 @@
 |
 */
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['domain' => '{site}.helpdesk.dev'], function () {
+    Route::get('/', 'SiteController@index')->name('site.index');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
