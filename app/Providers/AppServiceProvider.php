@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Sites\SiteRepository;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,10 +15,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Relation::morphMap([
+            'site' => 'App\Sites\Site',
+            'role' => 'App\Roles\Role',
+        ]);
+
         /**
          * Require helpers
          */
         require_once __DIR__ . '/../helpers.php';
+        
     }
 
     /**
@@ -33,10 +40,6 @@ class AppServiceProvider extends ServiceProvider
             $host = request()->getHttpHost();
             $subdomain = explode('.', $host)[0];
             $site = app(SiteRepository::class)->getSite($subdomain);
-
-            if (is_null($site)) {
-                abort(404, 'Not Found Boss');
-            }
 
             return $site;
         });

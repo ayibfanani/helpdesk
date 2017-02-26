@@ -14,6 +14,6 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/user', function () {
-    $users = \App\User::get();
+    $users = \App\Users\User::get();
     return response()->json($users);
 });

@@ -56,7 +56,9 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        $this->validateLogin($request);
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])) {
             $user = auth()->user();
 
             if ($user->sites->isEmpty()) {
@@ -64,8 +66,43 @@ class LoginController extends Controller
                 return redirect()->intended('/');
             }
 
+            $user->last_login = \Carbon\Carbon::now();
+            $user->save();
+
             return redirect()->intended('/home');
         }
+
+        return response(['not_match' => 'These credentials do not match our records.'], 422);
+    }
+
+    /**
+     * Validate the user login request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    protected function validateLogin(Request $request)
+    {
+        $rules = [
+            $this->username() => 'required|exists:users,username', 
+            'password' => 'required',
+        ];
+
+        if($this->username() == 'email') {
+            $rules['email'] = 'required|email|exists:users,email';
+        }
+
+        $this->validate($request, $rules);
+    }
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'email';
     }
 
     /**

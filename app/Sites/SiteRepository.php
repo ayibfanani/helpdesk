@@ -15,4 +15,14 @@ class SiteRepository
     {
         return $this->model->where('slug', $slug)->first();
     }
+
+    public function create(array $data) {
+        $site = $this->model->create([
+            'name' => $data['name'],
+            'slug' => $data['slug'],
+            'status' => $data['status']
+        ]);
+
+        return $site;
+    }
 }

@@ -13,9 +13,19 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// Partials
+Vue.component('sidebar', require('./components/partials/Sidebar.vue'));
+Vue.component('navbar', require('./components/partials/Navbar.vue'));
+
 Vue.component('alert', require('./components/Alert.vue'));
 Vue.component('register', require('./components/Register.vue'));
 Vue.component('login', require('./components/Login.vue'));
+Vue.component('pagination', require('./components/Pagination.vue'));
+Vue.component('modal-form', require('./components/ModalForm.vue'));
+
+// Tickets
+Vue.component('all-tickets', require('./components/tickets/All.vue'));
+Vue.component('list-ticket', require('./components/tickets/List.vue'));
 
 const app = new Vue({
     el: '#app'

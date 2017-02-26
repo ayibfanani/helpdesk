@@ -6,16 +6,28 @@
 					<div class="column is-4 is-offset-4">
 						<h1 class="title">Login</h1>
 						<div class="box">
-                            <form method="POST" @submit.prevent="login">
+                            <span class="help is-danger" v-if="errors.not_match" v-text="errors.not_match"></span>
+
+                            <form method="POST" @submit.stop.prevent="login">
                                  <label class="label">Email</label>
                                  <p class="control">
-                                    <input name="email" class="input" type="text" placeholder="jsmith@example.org" v-model="data.email">
-                                    <span class="help is-danger" v-if="errors['email']" v-text="errors['email']"></span>
+                                    <input name="email" 
+                                        class="input" 
+                                        type="text" 
+                                        placeholder="jsmith@example.org" 
+                                        v-model="data.email"
+                                    >
+                                    <span class="help is-danger" v-if="errors.email" v-text="errors.email[0]"></span>
                                 </p>
                                 <label class="label">Password</label>
                                 <p class="control">
-                                    <input name="password" class="input" type="password" placeholder="●●●●●●●" v-model="data.password">
-                                    <span class="help is-danger" v-if="errors['password']" v-text="errors['password']"></span>
+                                    <input name="password" 
+                                        class="input" 
+                                        type="password" 
+                                        placeholder="●●●●●●●" 
+                                        v-model="data.password"
+                                    >
+                                    <span class="help is-danger" v-if="errors.password" v-text="errors.password[0]"></span>
                                 </p>
                                 <hr>
                                 <p class="control">
@@ -49,6 +61,9 @@
                     email: '', password: ''
                 }
             }
+        },
+        mounted() {
+
         },
         methods: {
             login(e) {

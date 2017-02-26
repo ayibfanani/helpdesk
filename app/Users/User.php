@@ -1,9 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Users;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use \App\Sites\Site;
+use \App\Users\Usermeta;
 
 class User extends Authenticatable
 {
@@ -27,8 +29,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function metas() {
+        return $this->hasMany(Usermeta::class);
+    }
+
     public function sites()
     {
-        return $this->belongsToMany(\App\Sites\Site::class, 'user_site');
+        return $this->morphedByMany(Site::class, 'userable');
     }
 }
