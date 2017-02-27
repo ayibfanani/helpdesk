@@ -29,9 +29,6 @@
                     </div>
 
                     <hr>
-                    <nav class="level" style="border-bottom: 1px solid #dbdbdb;">
-                        @yield('content_neck')
-                    </nav>
 
                     @yield('content')
                 </div>

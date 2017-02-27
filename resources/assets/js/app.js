@@ -21,10 +21,13 @@ Vue.component('alert', require('./components/Alert.vue'));
 Vue.component('register', require('./components/Register.vue'));
 Vue.component('login', require('./components/Login.vue'));
 Vue.component('pagination', require('./components/Pagination.vue'));
-Vue.component('modal-form', require('./components/ModalForm.vue'));
+Vue.component('modal', require('./components/Modal.vue'));
 
 // Tickets
 Vue.component('all-tickets', require('./components/tickets/All.vue'));
+
+// Knowledges
+Vue.component('knowledge-posts', require('./components/knowledges/Posts.vue'));
 
 const store = new Vuex.Store({
     state: {

@@ -26,12 +26,15 @@
                                             <span class="tag is-primary">{{ ticket.staff }}</span>
                                         </a>
                                         <a class="level-item">
+                                            <span class="tag is-dark">{{ ticket.about }}</span>
+                                        </a>
+                                        <a class="level-item">
                                             <span class="tag">{{ ticket.category }}</span>
                                         </a>
                                         <a class="level-item">
                                             <span class="tag is-warning">{{ ticket.priority }}</span>
                                         </a>
-                                        <a class="level-item" @click="showModal(ticket.email)">
+                                        <a class="level-item" @click="showModal()">
                                             <span><small>Quick Edit</small></span>
                                         </a>
                                     </div>
@@ -54,7 +57,7 @@
         </table>
 
         <!-- Modal Quick Edit -->
-        <modal-form action="https://www.google.com/" method="POST">
+        <modal action="https://www.google.com/" method="POST">
             <span slot="title">Quick Edit</span>
 
             <span slot="content">
@@ -68,13 +71,24 @@
                     </span>
                 </p>
 
+                <label class="label">What's this about?</label>
+                <p class="control">
+                    <span class="select is-fullwidth">
+                        <select>
+                            <option>What's this about?</option>
+                            <option>Problem</option>
+                            <option>Feature</option>
+                            <option>Sales</option>
+                        </select>
+                    </span>
+                </p>
+
                 <label class="label">Category</label>
                 <p class="control">
                     <span class="select is-fullwidth">
                         <select>
                             <option>Select category</option>
-                            <option>Problem</option>
-                            <option>Features</option>
+                            <option>Helpdesk</option>
                         </select>
                     </span>
                 </p>
@@ -97,7 +111,7 @@
                 <button type="submit" class="button is-primary">Save changes</button>
                 <a class="button">Cancel</a>
             </span>
-        </modal-form>
+        </modal>
     </div>
 </template>
 
@@ -112,7 +126,8 @@
                         email: 'ayibfanani@gmail.com', 
                         content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius libero minus sint nihil distinctio obcaecati, reiciendis, enim harum ab voluptate debitis ea nesciunt illum blanditiis asperiores. Ex facere, earum maiores!',
                         staff: 'Aul',
-                        category: 'Problem',
+                        about: 'Problem',
+                        category: 'Helpdesk',
                         priority: 'Urgent'
                     },
                     { 
@@ -120,7 +135,8 @@
                         email: 'affan@gmail.com', 
                         content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius libero minus sint nihil distinctio obcaecati, reiciendis, enim harum ab voluptate debitis ea nesciunt illum blanditiis asperiores. Ex facere, earum maiores!',
                         staff: 'Lia',
-                        category: 'Feature',
+                        about: 'Features',
+                        category: 'Helpdesk',
                         priority: 'Low'
                     },
                     { 
@@ -128,7 +144,8 @@
                         email: 'ilmi@gmail.com', 
                         content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius libero minus sint nihil distinctio obcaecati, reiciendis, enim harum ab voluptate debitis ea nesciunt illum blanditiis asperiores. Ex facere, earum maiores!',
                         staff: 'Ilm',
-                        category: 'Problem',
+                        about: 'Sales',
+                        category: 'Helpdesk',
                         priority: 'High'
                     }
                 ]
@@ -140,8 +157,7 @@
             }
         },
         methods: {
-            showModal(id) {
-                console.log(id)
+            showModal() {
                 // this.modalContent = {
                 //     staff: e.target.innerText
                 // }
