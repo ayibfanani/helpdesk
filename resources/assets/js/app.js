@@ -25,8 +25,20 @@ Vue.component('modal-form', require('./components/ModalForm.vue'));
 
 // Tickets
 Vue.component('all-tickets', require('./components/tickets/All.vue'));
-Vue.component('list-ticket', require('./components/tickets/List.vue'));
+
+const store = new Vuex.Store({
+    state: {
+        modal: false,
+    },
+    mutations: {
+        modal(state, value) {
+            state.modal = value
+        }
+    },
+    actions: {}
+})
 
 const app = new Vue({
-    el: '#app'
+    store,
+    el: '#app',
 });
