@@ -31,8 +31,8 @@
                                         <a class="level-item">
                                             <span class="tag is-warning">{{ ticket.priority }}</span>
                                         </a>
-                                        <a class="level-item" @click="showModal($event)">
-                                            <span class=""><small>Quick Edit</small></span>
+                                        <a class="level-item" @click="showModal(ticket.email)">
+                                            <span><small>Quick Edit</small></span>
                                         </a>
                                     </div>
                                 </nav>
@@ -53,23 +53,44 @@
             </tbody>
         </table>
 
+        <!-- Modal Quick Edit -->
         <modal-form action="https://www.google.com/" method="POST">
-            <span slot="title">Test</span>
+            <span slot="title">Quick Edit</span>
 
             <span slot="content">
                 <label class="label">Staff</label>
                 <p class="control">
-                    <input type="text" class="input" placeholder="Hello" v-model="modalContent.staff">
+                    <span class="select is-fullwidth">
+                        <select>
+                            <option>Select staff</option>
+                            <option>Ayib Fanani</option>
+                        </select>
+                    </span>
                 </p>
-                <!-- <label class="label">Staff</label>
+
+                <label class="label">Category</label>
                 <p class="control">
                     <span class="select is-fullwidth">
                         <select>
-                            <option>Select dropdown</option>
-                            <option>With options</option>
+                            <option>Select category</option>
+                            <option>Problem</option>
+                            <option>Features</option>
                         </select>
                     </span>
-                </p> -->
+                </p>
+
+                <label class="label">Priority</label>
+                <p class="control">
+                    <span class="select is-fullwidth">
+                        <select>
+                            <option>Select priority</option>
+                            <option>Urgent</option>
+                            <option>High</option>
+                            <option>Medium</option>
+                            <option>Low</option>
+                        </select>
+                    </span>
+                </p>
             </span>
 
             <span slot="footer">
@@ -119,10 +140,11 @@
             }
         },
         methods: {
-            showModal(e) {
-                this.modalContent = {
-                    staff: e.target.innerText
-                }
+            showModal(id) {
+                console.log(id)
+                // this.modalContent = {
+                //     staff: e.target.innerText
+                // }
                 return this.$store.commit('modal', true)
             }
         }

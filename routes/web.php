@@ -15,7 +15,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => 'site', 'domain' => '{account}.helpdesk.dev'], function () {
+Route::group(['middleware' => 'site'], function () {
     Route::get('/', 'SiteController@index')->name('site.index');
 
     // Route of Ticket

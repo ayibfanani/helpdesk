@@ -16,6 +16,7 @@
                                         type="text" 
                                         placeholder="jsmith@example.org" 
                                         v-model="data.email"
+                                        autofocus 
                                     >
                                     <span class="help is-danger" v-if="errors.email" v-text="errors.email[0]"></span>
                                 </p>
