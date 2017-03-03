@@ -13,10 +13,10 @@
             <div class="level-item">
                 <div class="tabs">
                     <ul>
-                        <li class="is-active"><a>All</a></li>
-                        <li><a>Open</a></li>
-                        <li><a>Pending</a></li>
-                        <li><a>Solved</a></li>
+                        <li class="is-active"><a>All (10)</a></li>
+                        <li><a>Open (5)</a></li>
+                        <li><a>Pending (4)</a></li>
+                        <li><a>Solved (9)</a></li>
                     </ul>
                 </div>
             </div>

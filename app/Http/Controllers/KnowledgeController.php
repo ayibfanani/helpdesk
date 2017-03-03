@@ -19,7 +19,7 @@ class KnowledgeController extends Controller
     public function posts($category = null)
     {
     	$data = [
-            'title' => 'All Posts',
+            'title' => 'Knowledge Base',
             'sidebar' => 'kbase'
         ];
 

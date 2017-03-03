@@ -32,7 +32,10 @@
                                             <span class="tag">{{ ticket.category }}</span>
                                         </a>
                                         <a class="level-item">
-                                            <span class="tag is-warning">{{ ticket.priority }}</span>
+                                            <span class="tag is-danger" v-if="ticket.priority == 'urgent'">Urgent</span>
+                                            <span class="tag is-warning" v-else-if="ticket.priority == 'high'">High</span>
+                                            <span class="tag is-info" v-else-if="ticket.priority == 'medium'">Medium</span>
+                                            <span class="tag is-success" v-else>Low</span>
                                         </a>
                                         <a class="level-item" @click="showModal()">
                                             <span><small>Quick Edit</small></span>
@@ -98,10 +101,10 @@
                     <span class="select is-fullwidth">
                         <select>
                             <option>Select priority</option>
-                            <option>Urgent</option>
-                            <option>High</option>
-                            <option>Medium</option>
-                            <option>Low</option>
+                            <option value="urgent">Urgent</option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
                         </select>
                     </span>
                 </p>
@@ -112,6 +115,7 @@
                 <a class="button">Cancel</a>
             </span>
         </modal>
+        <!-- End Quick Edit -->
     </div>
 </template>
 
@@ -128,7 +132,7 @@
                         staff: 'Aul',
                         about: 'Problem',
                         category: 'Helpdesk',
-                        priority: 'Urgent'
+                        priority: 'urgent'
                     },
                     { 
                         fullname: 'Affan', 
@@ -137,7 +141,7 @@
                         staff: 'Lia',
                         about: 'Features',
                         category: 'Helpdesk',
-                        priority: 'Low'
+                        priority: 'low'
                     },
                     { 
                         fullname: 'Ilmi', 
@@ -146,7 +150,7 @@
                         staff: 'Ilm',
                         about: 'Sales',
                         category: 'Helpdesk',
-                        priority: 'High'
+                        priority: 'high'
                     }
                 ]
             }

@@ -20,8 +20,12 @@ Route::group(['middleware' => 'site'], function () {
 
     // Route of Ticket
     require_once 'ticket.php';
-    // Route of Ticket
+    // Route of Knowledge Base
     require_once 'knowledge.php';
+    // Route of Categories
+    require_once 'category.php';
+    // Route of Categories
+    require_once 'tag.php';
 });
 
 Route::get('/', function () {

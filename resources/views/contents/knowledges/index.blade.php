@@ -14,7 +14,7 @@
                 <h1 class="title">FAQ</h1>
                 <ul>
                     <li>
-                        <a href="{{ route('knowledge.posts') }}">Lorem ipsum dolor sit amet</a>
+                        <a href="{{ route('knowledge.posts', 13) }}">Lorem ipsum dolor sit amet</a>
                     </li>
                     <li>
                         <a href="">consectetur adipisicing elit.</a>

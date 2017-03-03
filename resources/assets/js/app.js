@@ -29,13 +29,22 @@ Vue.component('all-tickets', require('./components/tickets/All.vue'));
 // Knowledges
 Vue.component('knowledge-posts', require('./components/knowledges/Posts.vue'));
 
+// Categories
+Vue.component('all-categories', require('./components/taxonomies/categories/All.vue'));
+// Tags
+Vue.component('all-tags', require('./components/taxonomies/tags/All.vue'));
+
 const store = new Vuex.Store({
     state: {
         modal: false,
+        alert: false,
     },
     mutations: {
         modal(state, value) {
             state.modal = value
+        },
+        malert(state, value) {
+            state.alert = value
         }
     },
     actions: {}
