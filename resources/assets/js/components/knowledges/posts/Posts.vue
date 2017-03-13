@@ -2,20 +2,19 @@
     <div>
         <table class="table">
             <tbody>
-                <tr v-for="post in posts">
+                <tr v-for="(post, index) in posts">
                     <td>
                         <article class="media">
-                            <figure class="media-left">
-                            </figure>
+                            <figure class="media-left"></figure>
                             <div class="media-content">
                                 <div class="content">
                                     <p>
                                         <strong>
-                                            <a href="#">{{ post.fullname }}</a>
+                                            {{ post.fullname }}
                                         </strong> 
                                         <small>{{ post.email }}</small> <small>31m</small>
                                         <br>
-                                        {{ post.excerpt }}
+                                        <a :href="post.links.edit">{{ post.excerpt }}</a>
                                     </p>
                                 </div>
                                 <nav class="level">
@@ -33,7 +32,7 @@
                                         <a class="level-item">
                                             <span class="tag is-dark">{{ post.category }}</span>
                                         </a>
-                                        <a class="level-item" @click="showModal()">
+                                        <a class="level-item" @click.prevent="showModal('quick_edit', index)">
                                             <span><small>Quick Edit</small></span>
                                         </a>
                                     </div>
@@ -41,7 +40,7 @@
                                         <a class="level-item" v-for="tag in post.tags">
                                             <span class="tag">{{ tag.name }}</span>
                                         </a>
-                                        <a class="level-item text-danger">
+                                        <a href="" class="level-item text-danger" @click.prevent="destroy(post.id)">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </div>
@@ -63,16 +62,20 @@
             </tbody>
         </table>
         
-        <modal action="https://www.google.com/" method="POST">
+        <!-- Quick Edit Modal -->
+        <modal action="https://www.google.com/" method="POST" v-if="modal == 'quick_edit'">
             <span slot="title">Quick Edit</span>
 
             <span slot="content">
                 <label class="label">Status</label>
                 <p class="control">
                     <span class="select is-fullwidth">
-                        <select>
-                            <option value="publish">Publish</option>
-                            <option value="draft">Draft</option>
+                        <select name="status">
+                            <option v-for="status in statuses" 
+                                :value="status.value" 
+                                v-text="status.name"
+                                :selected="dataQuickEdit.status == status.value"
+                            ></option>
                         </select>
                     </span>
                 </p>
@@ -80,10 +83,13 @@
                 <label class="label">Category</label>
                 <p class="control">
                     <span class="select is-fullwidth">
-                        <select>
+                        <select name="category">
                             <option>Select category</option>
-                            <option>Programming</option>
-                            <option>Networking</option>
+                            <option v-for="(category, index) in categories" 
+                                :value="category.id" 
+                                v-text="category.name"
+                                :selected="dataQuickEdit.category == category.id"
+                            ></option>
                         </select>
                     </span>
                 </p>
@@ -91,9 +97,12 @@
                 <label class="label">Tags</label>
                 <p class="control">
                     <span class="select is-fullwidth">
-                        <select multiple>
-                            <option>PHP</option>
-                            <option>Laravel</option>
+                        <select name="tags" multiple>
+                            <option>Select Tags</option>
+                            <option v-for="tag in tags" 
+                                :value="tag.id" 
+                                v-text="tag.name"
+                            ></option>
                         </select>
                     </span>
                 </p>
@@ -104,6 +113,7 @@
                 <a class="button">Cancel</a>
             </span>
         </modal>
+        <!-- End Quick Edit Modal -->
     </div>
 </template>
 
@@ -111,9 +121,17 @@
     export default {
         data() {
             return {
-                modalContent: {},
-                posts: [
+                dataQuickEdit: {},
+            }
+        },
+        computed: {
+            modal() {
+                return this.$root.modal
+            },
+            posts() {
+                return [
                     { 
+                        id: 1,
                         fullname: 'Ayib Fanani', 
                         email: 'ayibfanani@gmail.com', 
                         excerpt: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ',
@@ -123,9 +141,13 @@
                         tags: [
                             { name: 'PHP', slug: 'php' },
                             { name: 'Laravel', slug: 'laravel' },
-                        ]
+                        ],
+                        links: { 
+                            edit: '/knowledges/posts/1/edit/1',
+                        }
                     },
                     { 
+                        id: 2,
                         fullname: 'Ayib Fanani', 
                         email: 'ayibfanani@gmail.com', 
                         excerpt: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ',
@@ -135,22 +157,53 @@
                         tags: [
                             { name: 'PHP', slug: 'php' },
                             { name: 'Laravel', slug: 'laravel' },
-                        ]
+                        ],
+                        links: { 
+                            edit: '/knowledges/posts/1/edit/2',
+                        }
                     },
+                ]
+            },
+            statuses() {
+                return [
+                    { value: 0, name: 'Draft' },
+                    { value: 1, name: 'Publish' },
+                ]
+            },
+            categories() {
+                return [
+                    { id: 1, name: 'Laravel', slug: 'laravel' },
+                    { id: 2, name: 'PHP', slug: 'php' },
+                    { id: 3, name: 'HTML', slug: 'html' },
+                ]
+            },
+            tags() {
+                return [
+                    { id: 1, name: 'Skills', slug: 'skills' },
+                    { id: 2, name: 'Test', slug: 'test' },
                 ]
             }
         },
-        computed: {
-            modal() {
-                return this.$store.state.modal
-            }
-        },
         methods: {
-            showModal() {
-                // this.modalContent = {
-                //     staff: e.target.innerText
-                // }
-                return this.$store.commit('modal', true)
+            showModal(type) {
+                switch(type) {
+                    case 'quick_edit':
+                        // get data ajax
+                        // Data temp
+                        var data = {
+                            status: 0,
+                            category: 1,
+                            tags: [0]
+                        }
+
+                        this.dataQuickEdit = data
+                        break;
+                }
+
+                this.$root.modal = type
+            },
+            destroy(id) {
+                alert(id)
             }
         }
     }

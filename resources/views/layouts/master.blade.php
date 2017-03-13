@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
 
     <title>{{ @$title }}</title>
     
@@ -20,15 +20,16 @@
         <div class="container is-fluid">
             <div class="columns">
                 <div class="column hero is-one-quarter is-hidden-mobile is-fullheight" id="sidebar">
-                    <sidebar menu="{{ $sidebar or null }}"></sidebar>
+                    <sidebar menu_choosed="{{ $sidebar or null }}"></sidebar>
                 </div>
                 <div class="column is-paddingless">
                     <br>
                     <div class="columns is-marginless">
                         @yield('content_head')
                     </div>
+                    {{-- <br> --}}
 
-                    <hr>
+                    <hr class="is-marginless">
 
                     @yield('content')
                 </div>

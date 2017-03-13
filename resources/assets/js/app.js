@@ -25,32 +25,54 @@ Vue.component('modal', require('./components/Modal.vue'));
 
 // Tickets
 Vue.component('all-tickets', require('./components/tickets/All.vue'));
+Vue.component('ticket-show', require('./components/tickets/Show.vue'));
 
 // Knowledges
-Vue.component('knowledge-posts', require('./components/knowledges/Posts.vue'));
+Vue.component('knowledges', require('./components/knowledges/All.vue'));
+Vue.component('knowledge-posts', require('./components/knowledges/posts/Posts.vue'));
+Vue.component('knowledge-post-form', require('./components/knowledges/posts/Form.vue'));
 
 // Categories
 Vue.component('all-categories', require('./components/taxonomies/categories/All.vue'));
 // Tags
 Vue.component('all-tags', require('./components/taxonomies/tags/All.vue'));
 
-const store = new Vuex.Store({
-    state: {
-        modal: false,
-        alert: false,
-    },
-    mutations: {
-        modal(state, value) {
-            state.modal = value
+// Teams
+Vue.component('all-teams', require('./components/teams/All.vue'));
+
+// const store = new Vuex.Store({
+//     state: {
+//         modal: false,
+//         alert: false,
+//     },
+//     mutations: {
+//         modal(state, value) {
+//             state.modal = value
+//         },
+//         alert(state, value) {
+//             state.alert = value
+//         }
+//     },
+//     actions: {}
+// })
+
+Vue.mixin({
+    methods: {
+        showModal() {
+            this.$root.modal = true
         },
-        malert(state, value) {
-            state.alert = value
+        closeModal() {
+            this.$root.modal = false
         }
-    },
-    actions: {}
+    }
 })
 
 const app = new Vue({
-    store,
+    // store,
     el: '#app',
+    data() {
+        return {
+            modal: false
+        }
+    }
 });

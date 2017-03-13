@@ -23,7 +23,7 @@ class CreateTicketsTable extends Migration
             $table->longText('content');
             $table->string('status');
             $table->string('priority');
-            $table->integer('string');
+            $table->tinyInteger('type');
             $table->timestamp('expired_at')->nullable();
             $table->timestamps();
         });

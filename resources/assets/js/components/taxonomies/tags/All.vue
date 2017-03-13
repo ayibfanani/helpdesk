@@ -14,6 +14,29 @@
                 </tr>
             </tbody>
         </table>
+        
+        <!-- Modal -->
+        <modal action="https://www.google.com/" method="POST">
+            <span slot="title">Create new Tag</span>
+
+            <span slot="content">
+                <label class="label">Name</label>
+                <p class="control">
+                    <input type="text" name="name" placeholder="Name" class="input">
+                </p>
+                
+                <label class="label">Slug</label>
+                <p class="control">
+                    <input type="text" name="slug" placeholder="Slug" class="input  ">
+                </p>
+            </span>
+
+            <span slot="footer">
+                <button type="submit" class="button is-primary">Save changes</button>
+                <a class="button">Cancel</a>
+            </span>
+        </modal>
+        <!-- End Modal -->
     </div>
 </template>
 

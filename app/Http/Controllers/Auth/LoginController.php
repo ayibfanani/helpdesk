@@ -69,7 +69,7 @@ class LoginController extends Controller
             $user->last_login = \Carbon\Carbon::now();
             $user->save();
 
-            return redirect()->intended('/home');
+            return redirect()->route('home.index');
         }
 
         return response(['not_match' => 'These credentials do not match our records.'], 422);

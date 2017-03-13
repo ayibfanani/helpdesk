@@ -13,7 +13,7 @@
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home.index');
 
 Route::group(['middleware' => 'site'], function () {
     Route::get('/', 'SiteController@index')->name('site.index');
@@ -24,8 +24,10 @@ Route::group(['middleware' => 'site'], function () {
     require_once 'knowledge.php';
     // Route of Categories
     require_once 'category.php';
-    // Route of Categories
+    // Route of Tags
     require_once 'tag.php';
+    // Route of Tags
+    require_once 'team.php';
 });
 
 Route::get('/', function () {

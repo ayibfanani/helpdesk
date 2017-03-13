@@ -10,6 +10,15 @@ html, body {
     min-height: 100vh;
 }
 
+.background-white-bis {
+    background-color: $white-bis;
+}
+
+.input, .textarea {
+    box-shadow: none;
+}
+
+
 #sidebar {
     width: 200px;
     border-right: 1px solid #dbdbdb;
@@ -25,4 +34,30 @@ html, body {
 
 .text-danger {
     color: $red;
+}
+
+#nav-content {
+    border-bottom: 1px solid #dbdbdb; 
+    margin-top: 0.3em;
+}
+
+// Border Default
+.border-full-default {
+    border: 1px solid #dbdbdb;
+}
+
+.border-top-default {
+    border-top: 1px solid #dbdbdb;
+}
+
+.border-right-default {
+    border-right: 1px solid #dbdbdb;
+}
+
+.border-bottom-default {
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.border-left-default {
+    border-left: 1px solid #dbdbdb;
 }

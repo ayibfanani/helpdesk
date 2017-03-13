@@ -8,7 +8,7 @@
 
 @section('content')
     
-    <nav class="level" style="border-bottom: 1px solid #dbdbdb;">
+    <nav class="level" id="nav-content">
         <div class="level-left">
             <div class="level-item">
                 <div class="tabs">
@@ -41,6 +41,4 @@
     </nav>
 
     <all-tickets></all-tickets>
-    <hr>
-    <pagination>
 @stop

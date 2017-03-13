@@ -4,22 +4,24 @@
             <div class="modal-wrapper">
                 <div class="modal-container">
                     <a class="delete is-pulled-right" @click="closeModal"></a>
+                    <form :action="action" :method="method">
 
-                    <div class="modal-header">
-                        <h1 class="title">
-                            <slot name="title"></slot>
-                        </h1>
-                    </div>
-                    <hr>
+                        <div class="modal-header">
+                            <h1 class="title">
+                                <slot name="title"></slot>
+                            </h1>
+                        </div>
+                        <hr>
 
-                    <div class="modal-body">
-                        <slot name="content"></slot>
-                    </div>
-                    
-                    <hr>
-                    <div class="modal-footer">
-                        <slot name="footer"></slot>
-                    </div>
+                        <div class="modal-body">
+                            <slot name="content"></slot>
+                        </div>
+
+                        <hr>
+                        <div class="modal-footer">
+                            <slot name="footer"></slot>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -97,13 +99,8 @@
         props: ['action', 'method'],
         computed: {
             modal() {
-                return this.$store.state.modal
+                return this.$root.modal
             }
         },
-        methods: {
-            closeModal(e) {
-                return this.$store.commit('modal', false)
-            }
-        }
     }
 </script>
